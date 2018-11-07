@@ -1,0 +1,25 @@
+{
+	"name": "set-scraping-dashboard",
+	"version": "0.0.1",
+	"main": "index.js",
+	"repository": "git@github.com:kennaruk/set-scraping-dashboard.git",
+	"author": "Nitipat Wuttisasiwat <k-e-n_ken@hotmail.com>",
+	"license": "MIT",
+	"scripts": {
+		"dev": "cross-env DEBUG=api:* nodemon src/bin/www.js --exec babel-node",
+		"transpile": "babel src/ -d dist"
+	},
+	"dependencies": {
+		"cross-env": "^5.2.0",
+		"debug": "^4.1.0",
+		"dotenv": "^6.1.0",
+		"jssoup": "^0.0.9"
+	},
+	"devDependencies": {
+		"babel-cli": "^6.26.0",
+		"babel-plugin-dynamic-import-node": "^2.2.0",
+		"babel-plugin-transform-object-rest-spread": "^6.26.0",
+		"babel-preset-env": "^1.7.0",
+		"babel-preset-es2015": "^6.24.1"
+	}
+}
