@@ -1,5 +1,6 @@
 import $ from "cheerio";
 import request from "request";
+import moment from "moment";
 
 /* Request */
 const SET_BASE_URL =
@@ -37,21 +38,32 @@ const formatSetHtmlToJsons = ({ html }) => {
 			rows.each((i, row) => {
 				const data = $(row).find("td");
 				jsons.push({
-					date: $(data[0])
-						.text()
-						.trim(),
-					open: $(data[1])
-						.text()
-						.trim(),
-					high: $(data[2])
-						.text()
-						.trim(),
-					low: $(data[3])
-						.text()
-						.trim(),
-					close: $(data[4])
-						.text()
-						.trim()
+					date: moment(
+						$(data[0])
+							.text()
+							.trim(),
+						"DD/MM/YYYY"
+					).format("x"),
+					open: parseFloat(
+						$(data[1])
+							.text()
+							.trim()
+					),
+					high: parseFloat(
+						$(data[2])
+							.text()
+							.trim()
+					),
+					low: parseFloat(
+						$(data[3])
+							.text()
+							.trim()
+					),
+					close: parseFloat(
+						$(data[4])
+							.text()
+							.trim()
+					)
 				});
 			});
 			resolve(jsons);

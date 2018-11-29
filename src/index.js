@@ -1,11 +1,15 @@
 import "./env";
 
 import { scrapingStockDataBySymbol } from "./controllers/set";
+import { insertDataToInflux } from "./controllers/influx";
 
-const main = async ({ symbol = "" } = {}) => {
+const scrapingSETBySymbol = async ({ symbol = "" } = {}) => {
 	if (!symbol) return;
 	const data = await scrapingStockDataBySymbol({ symbol });
-	// console.log(data);
+	await insertDataToInflux({ data, symbol });
 };
-// main({ symbol: "PTT" });
-main();
+
+scrapingSETBySymbol({ symbol: "PTT" });
+scrapingSETBySymbol({ symbol: "BBL" });
+scrapingSETBySymbol({ symbol: "AOT" });
+scrapingSETBySymbol({ symbol: "KBANK" });
